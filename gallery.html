@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — LootGrid Pro Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="product" href="index.html">LootGrid <span>Pro</span></a>
+  <span class="brand">ByteLura</span>
+  <span class="tagline">Spatial grid inventory for Unity</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <p class="nav-title">Documentation</p>
+    <nav>
+      <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="quick-start.html">Quick Start</a></li>
+          <li><a href="grid-model.html">The Grid Model</a></li>
+          <li><a href="containers-and-weight.html">Containers and Weight</a></li>
+          <li><a href="drag-drop-and-click-move.html">Drag-and-Drop and Click-Move</a></li>
+          <li><a href="equipment-doll.html">The Equipment Doll</a></li>
+          <li><a href="saving-and-json.html">Saving and JSON</a></li>
+          <li><a href="loot-tables.html">Loot Tables</a></li>
+          <li><a href="building-your-screen.html">Building Your Screen</a></li>
+          <li><a href="demo-guide.html">Demo Guide — The Loot Yard</a></li>
+          <li><a href="api-summary.html">API Summary</a></li>
+          <li><a href="honest-limits.html">Honest Limits</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="support.html">Support</a></li>
+      </ol>
+    </nav>
+    <p class="side-note">LootGrid Pro is a ByteLura product.<br>
+    Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></p>
+  </aside>
+  <main class="content">
+
+    <h1>Gallery</h1>
+    <p class="lede">LootGrid Pro in the Loot Yard demo — every frame is the real demo, nothing staged.</p>
+
+    <p>The fifteen frames below walk through the package: the grid, drag
+    and drop, rotation, the equipment doll, sorting, weight refusal,
+    looting, item data, the database, Verify Install, saving, the API,
+    and the product at a glance. Each frame is captioned with what it
+    shows; the <a href="demo-guide.html">Loot Yard demo guide</a> tours
+    the same features step by step.</p>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-01.png" alt="The Loot Yard inventory screen: a backpack grid beside the Wreck Chest, with items placed by width and height footprint">
+      <figcaption>The grid: a backpack beside the Wreck Chest, items placed by width and height footprint.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-02.png" alt="Dragging an item across the inventory: the ghost preview follows the cursor over the backpack grid">
+      <figcaption>The drag ghost: the item preview follows the cursor while dragging.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-03.png" alt="An iron sword placed rotated, fitting its 1 by 3 footprint sideways in the grid">
+      <figcaption>Rotated fit: the Iron Sword placed sideways, its 1&times;3 footprint rotated to fit.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-04.png" alt="The equipment doll with the iron dagger equipped in the main-hand slot">
+      <figcaption>The equipment doll: the iron dagger equipped in the main-hand slot.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-05.png" alt="Unequipping the leather cap from the equipment doll back into the backpack">
+      <figcaption>Unequip: the leather cap leaves the doll and returns to the backpack.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-06.png" alt="Dragging the chain vest, a large 2 by 3 piece, across the inventory grid">
+      <figcaption>The big piece: the chain vest, a 2&times;3 item, dragged across the grid.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-07.png" alt="The Wreck Chest grid after sorting by rarity, with items re-laid out in order">
+      <figcaption>Sort and stack: the Wreck Chest re-laid out after sorting by rarity.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-08.png" alt="A refused drag: the 4.0 kg shield stays in the chest because the backpack is at 4.1 kg of its 7 kg limit">
+      <figcaption>Too heavy is an answer, not a crash: the 4.0&nbsp;kg shield stays in the chest at 4.1&nbsp;kg of the 7&nbsp;kg limit.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-09.png" alt="Looting the Wreck Chest: items moved from the chest into the backpack grid">
+      <figcaption>Loot the wreck: items moved from the Wreck Chest into the backpack grid.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-10.png" alt="The Iron Sword item definition in the Unity Inspector, showing footprint 1 by 3, rarity, weight, value and a footprint preview">
+      <figcaption>Item data: the Iron Sword definition — footprint 1&times;3, rarity, weight, value, footprint preview.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-11.png" alt="The item database open in the Unity Inspector, listing the demo items with editor validation">
+      <figcaption>The database: the demo items in the Inspector, with editor validation.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-12.png" alt="The LootGrid Pro welcome window after running Verify Install, with every install check reporting Pass">
+      <figcaption>Verify Install: the welcome window with every install check reporting Pass.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-13.png" alt="Saving and JSON: CaptureAll, ToJson and RestoreAll, the shipped save API">
+      <figcaption>Saving and JSON: CaptureAll, ToJson and RestoreAll — the shipped save API.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-14.png" alt="API summary: the whole inventory screen builds from one call, InventoryScreenView.Build">
+      <figcaption>The API: the whole screen builds from one call, <code>InventoryScreenView.Build(...)</code>.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/showcase-15.png" alt="LootGrid Pro at a glance: 10 items, 8 doll slots, 3 sort modes, 2 demo containers, 0 dependencies, 34 EditMode tests">
+      <figcaption>At a glance: 10 items, 8 doll slots, 3 sort modes, 2 demo containers, 0 dependencies, 34 EditMode tests.</figcaption>
+    </figure>
+
+    <footer class="page-footer">
+      <span>LootGrid Pro — a ByteLura product.</span>
+      <span>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
