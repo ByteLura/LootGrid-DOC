@@ -65,6 +65,16 @@
       says why.</li>
     </ul>
 
+    <figure class="doc-shot">
+      <img src="images/doll-equipped.jpg" alt="The inventory screen with the backpack nearly empty after equipping, the equipped items out of the grid, beside the Wreck Chest">
+      <figcaption>Equipping moves the item out of the grid: the backpack keeps only what is not worn.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/doll-unequip.jpg" alt="The inventory screen after unequipping the Leather Cap, the cap sitting as a 2×2 piece in the backpack grid beside the Wreck Chest">
+      <figcaption>Unequip is a move, not a delete: the Leather Cap returns to the backpack as a 2×2 piece.</figcaption>
+    </figure>
+
     <h2>In code</h2>
     <pre><code>loadout.Equipment.TryEquip(new ItemStack(def, 1), out var refused);
 var worn = loadout.Equipment.GetEquipped(EquipmentSlotType.MainHand);
