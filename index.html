@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home — LootGrid Pro Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="product" href="index.html">LootGrid <span>Pro</span></a>
+  <span class="brand">ByteLura</span>
+  <span class="tagline">Spatial grid inventory for Unity</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <p class="nav-title">Documentation</p>
+    <nav>
+      <ol>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="quick-start.html">Quick Start</a></li>
+          <li><a href="grid-model.html">The Grid Model</a></li>
+          <li><a href="containers-and-weight.html">Containers and Weight</a></li>
+          <li><a href="drag-drop-and-click-move.html">Drag-and-Drop and Click-Move</a></li>
+          <li><a href="equipment-doll.html">The Equipment Doll</a></li>
+          <li><a href="saving-and-json.html">Saving and JSON</a></li>
+          <li><a href="loot-tables.html">Loot Tables</a></li>
+          <li><a href="building-your-screen.html">Building Your Screen</a></li>
+          <li><a href="demo-guide.html">Demo Guide — The Loot Yard</a></li>
+          <li><a href="api-summary.html">API Summary</a></li>
+          <li><a href="honest-limits.html">Honest Limits</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="support.html">Support</a></li>
+      </ol>
+    </nav>
+    <p class="side-note">LootGrid Pro is a ByteLura product.<br>
+    Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></p>
+  </aside>
+  <main class="content">
+
+    <h1>LootGrid Pro</h1>
+    <p class="lede">A spatial grid inventory for Unity.</p>
+
+    <p>LootGrid Pro is a spatial grid inventory for Unity: items occupy real
+    width &times; height footprints on a grid, rotate 90&deg;, stack, split, and move
+    between containers by drag-and-drop or click-to-move, under
+    per-container weight limits.</p>
+
+    <figure class="doc-hero">
+      <img src="images/hero.jpg" alt="The built inventory screen showing a backpack grid beside the Wreck Chest, with items placed by footprint">
+      <figcaption>The inventory screen in the Loot Yard demo: a backpack grid beside the Wreck Chest, with items placed by width and height footprint.</figcaption>
+    </figure>
+
+    <h2>What it does</h2>
+    <ul>
+      <li><strong>The grid model</strong> — <code>InventoryGrid</code> with footprints, rotation,
+      first-fit placement, stacking/splitting, auto-sort (size / rarity /
+      name) and auto-stack. Item totals are conserved on every mutating
+      path; a sort that cannot fit is refused and the layout is kept.</li>
+      <li><strong>Containers</strong> — one <code>InventoryContainer</code> component per backpack,
+      chest or stash: size, weight limit (0 = unlimited), starter items.</li>
+      <li><strong>Items</strong> — ScriptableObject definitions: stable Id (the save key),
+      footprint, rotation permission, stacking and max stack, rarity,
+      weight, base value, category, equipment slot.</li>
+      <li><strong>The screen</strong> — the complete in-game UI builds from one call,
+      <code>InventoryScreenView.Build(...)</code>: window, container panels with live
+      weight readouts and Sort/Stack buttons, the equipment doll, drag
+      layer and status line. No prefabs, no scene wiring.</li>
+      <li><strong>Equipment doll</strong> — eight slots with swap-safe equip/unequip, as a
+      separate module with its own save block. Remove it and the grid core
+      is untouched.</li>
+      <li><strong>Saves</strong> — container and equipment state captures to plain
+      serializable DTOs or JSON and restores defensively (unknown or
+      outgrown items are skipped with named warnings).</li>
+      <li><strong>Loot</strong> — weighted loot tables roll which defined items arrive, in
+      what counts. Seeded generation: the same seed gives the same loot.</li>
+    </ul>
+
+    <h2>Scope</h2>
+    <p>Tested on Unity 6000.5.4f1 and Unity 2022.3.22f1. No package
+    dependencies. Version 1 is inventory and loot only — the
+    <a href="honest-limits.html">Honest Limits</a> page states plainly what
+    v1 is not.</p>
+
+    <h2>Screenshots</h2>
+
+    <figure class="doc-shot">
+      <img src="images/game-loot.jpg" alt="The inventory grid after looting the Wreck Chest, with items moved into the backpack">
+      <figcaption>Looting the wreck: items moved from the Wreck Chest into the backpack grid.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/editor-item.jpg" alt="The Iron Sword item definition open in the Unity Inspector, showing footprint, rarity, weight and equipment slot fields">
+      <figcaption>An item definition in the Inspector: footprint, rarity, weight and equipment slot for the Iron Sword, with a footprint preview.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/editor-database.jpg" alt="The item database open in the Unity Inspector, showing the items list and validation section">
+      <figcaption>The item database in the Inspector, with editor validation for item ids and footprints.</figcaption>
+    </figure>
+
+    <figure class="doc-shot">
+      <img src="images/editor-verify.jpg" alt="The LootGrid Pro workshop window after running Verify Install, with every install check reporting Pass">
+      <figcaption>The workshop window after Verify Install, with every install check reporting Pass.</figcaption>
+    </figure>
+
+    <h2>Start here</h2>
+    <p>New to the package: the <a href="quick-start.html">Quick Start</a> runs
+    the demo in about two minutes, then walks through defining items,
+    placing containers and building the screen in your own game. The
+    <a href="demo-guide.html">Loot Yard demo guide</a> tours the sample
+    scene feature by feature.</p>
+
+    <h2>Support</h2>
+    <p>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a> — see
+    the <a href="support.html">Support</a> page for what to include. Running
+    into a problem first: <a href="troubleshooting.html">Troubleshooting</a>
+    starts with Verify Install, which diagnoses most issues in one run.</p>
+
+    <footer class="page-footer">
+      <span>LootGrid Pro — a ByteLura product.</span>
+      <span>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

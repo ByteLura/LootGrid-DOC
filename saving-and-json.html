@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saving and JSON — LootGrid Pro Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="product" href="index.html">LootGrid <span>Pro</span></a>
+  <span class="brand">ByteLura</span>
+  <span class="tagline">Spatial grid inventory for Unity</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <p class="nav-title">Documentation</p>
+    <nav>
+      <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quick-start.html">Quick Start</a></li>
+          <li><a href="grid-model.html">The Grid Model</a></li>
+          <li><a href="containers-and-weight.html">Containers and Weight</a></li>
+          <li><a href="drag-drop-and-click-move.html">Drag-and-Drop and Click-Move</a></li>
+          <li><a href="equipment-doll.html">The Equipment Doll</a></li>
+          <li><a href="saving-and-json.html" class="active">Saving and JSON</a></li>
+          <li><a href="loot-tables.html">Loot Tables</a></li>
+          <li><a href="building-your-screen.html">Building Your Screen</a></li>
+          <li><a href="demo-guide.html">Demo Guide — The Loot Yard</a></li>
+          <li><a href="api-summary.html">API Summary</a></li>
+          <li><a href="honest-limits.html">Honest Limits</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="support.html">Support</a></li>
+      </ol>
+    </nav>
+    <p class="side-note">LootGrid Pro is a ByteLura product.<br>
+    Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></p>
+  </aside>
+  <main class="content">
+
+    <h1>Saving and JSON</h1>
+
+    <p>LootGrid state is plain serializable data — that is the integration
+    surface for whatever save system your game already uses.</p>
+
+    <h2>Capture and restore</h2>
+    <pre><code>var data = InventorySerializer.CaptureAll(containers, loadout.Equipment);
+string json = InventorySerializer.ToJson(data);
+// ... store the string wherever your save system stores strings ...
+var restored = InventorySerializer.FromJson(json);
+var warnings = new List&lt;string&gt;();
+InventorySerializer.RestoreAll(restored, containers, loadout.Equipment, database, warnings);</code></pre>
+
+    <ul>
+      <li>Containers are matched to their saves by <strong>Container Id</strong> — keep
+      ids unique and stable across versions.</li>
+      <li>Items are matched by definition <strong>Id</strong> from your Item Database.</li>
+    </ul>
+
+    <h2>Defensive restore</h2>
+    <p>Restore never throws on bad content and never silently loses an item:</p>
+    <ul>
+      <li>An entry whose Id is not in the database is <strong>skipped with a
+      warning naming the Id</strong>; every other entry still restores.</li>
+      <li>An entry that no longer fits its container (you shrank the grid, or
+      the item grew) is <strong>skipped with a warning naming it</strong>; the rest
+      still restore.</li>
+      <li>The <code>warnings</code> list is the report — surface it in your debug UI or
+      log during development.</li>
+    </ul>
+
+    <p>Equipment state captures and restores in the same call pair
+    (<code>CaptureEquipment</code> / <code>RestoreEquipment</code> are also available on their
+    own).</p>
+
+    <h2>What is not claimed</h2>
+    <p>This is not a save system: no slots, no files, no cloud. It produces
+    data — plain DTOs with a JSON form — that a save system can store.
+    That narrower statement is the true one, and it is the one the
+    documentation makes.</p>
+
+    <footer class="page-footer">
+      <span>LootGrid Pro — a ByteLura product.</span>
+      <span>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

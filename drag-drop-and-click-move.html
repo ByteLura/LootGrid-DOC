@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drag-and-Drop and Click-Move — LootGrid Pro Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="product" href="index.html">LootGrid <span>Pro</span></a>
+  <span class="brand">ByteLura</span>
+  <span class="tagline">Spatial grid inventory for Unity</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <p class="nav-title">Documentation</p>
+    <nav>
+      <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quick-start.html">Quick Start</a></li>
+          <li><a href="grid-model.html">The Grid Model</a></li>
+          <li><a href="containers-and-weight.html">Containers and Weight</a></li>
+          <li><a href="drag-drop-and-click-move.html" class="active">Drag-and-Drop and Click-Move</a></li>
+          <li><a href="equipment-doll.html">The Equipment Doll</a></li>
+          <li><a href="saving-and-json.html">Saving and JSON</a></li>
+          <li><a href="loot-tables.html">Loot Tables</a></li>
+          <li><a href="building-your-screen.html">Building Your Screen</a></li>
+          <li><a href="demo-guide.html">Demo Guide — The Loot Yard</a></li>
+          <li><a href="api-summary.html">API Summary</a></li>
+          <li><a href="honest-limits.html">Honest Limits</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="support.html">Support</a></li>
+      </ol>
+    </nav>
+    <p class="side-note">LootGrid Pro is a ByteLura product.<br>
+    Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></p>
+  </aside>
+  <main class="content">
+
+    <h1>Drag-and-Drop and Click-Move</h1>
+
+    <p>All pointer interaction lives in one component, the
+    <code>InventoryDragController</code>, which the screen factory creates and wires
+    for you. Every gesture resolves through the grid's validated
+    operations — a refused drop changes nothing.</p>
+
+    <figure class="doc-shot">
+      <img src="images/drag-ghost.jpg" alt="A drag in progress over the inventory grid, with the dragged item shown as a ghost following the pointer">
+      <figcaption>A drag in progress: the item ghost follows the pointer over the grid before the drop lands.</figcaption>
+    </figure>
+
+    <h2>Gestures</h2>
+    <ul>
+      <li><strong>Drag</strong> — press an item and drag. A ghost follows the pointer at
+      the item's true footprint size (rotated shape included), tinted by
+      rarity, with a count badge on stacks. The source item dims while
+      dragged.</li>
+      <li><strong>R while dragging</strong> — rotates the ghost. Dropping commits the
+      rotated placement if it fits at the target cell.</li>
+      <li><strong>Shift-drag</strong> — carries half the stack, rounded up. The drop
+      resolves through the same split path as the model's <code>SplitStack</code>:
+      the carried half moves; the rest stays.</li>
+      <li><strong>Click</strong> — selects an item (highlight + a status line naming what
+      to do next). Click a cell — in any container — to move it there.
+      Click the item again or press <strong>Escape</strong> to clear.</li>
+      <li><strong>R with a selection</strong> — rotates the selected item in place; if it
+      cannot rotate there, the status line says so.</li>
+    </ul>
+
+    <h2>Drop resolution</h2>
+    <p>A drop walks from the pointer's raycast target up to the grid view
+    under it and converts the pointer position to a cell. Cross-container
+    drops place at the target cell when the whole stack fits there; when
+    only part fits (space or weight), exactly the fitting part moves and
+    the status line reports it; when nothing fits, the status line gives
+    the reason and the item stays in the source. Same-grid drops are a
+    <code>Move</code> — onto an occupied region they are refused, item unmoved.</p>
+
+    <h2>Refusal language</h2>
+    <p>Refusals are player-readable sentences, never codes: "That does not
+    fit there." &middot; "Too heavy for the Backpack." &middot; "No room in the
+    Backpack." &middot; "Only 3 fit in the Backpack." The screen's status line is
+    the single surface for all of them.</p>
+
+    <footer class="page-footer">
+      <span>LootGrid Pro — a ByteLura product.</span>
+      <span>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loot Tables — LootGrid Pro Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="product" href="index.html">LootGrid <span>Pro</span></a>
+  <span class="brand">ByteLura</span>
+  <span class="tagline">Spatial grid inventory for Unity</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <p class="nav-title">Documentation</p>
+    <nav>
+      <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quick-start.html">Quick Start</a></li>
+          <li><a href="grid-model.html">The Grid Model</a></li>
+          <li><a href="containers-and-weight.html">Containers and Weight</a></li>
+          <li><a href="drag-drop-and-click-move.html">Drag-and-Drop and Click-Move</a></li>
+          <li><a href="equipment-doll.html">The Equipment Doll</a></li>
+          <li><a href="saving-and-json.html">Saving and JSON</a></li>
+          <li><a href="loot-tables.html" class="active">Loot Tables</a></li>
+          <li><a href="building-your-screen.html">Building Your Screen</a></li>
+          <li><a href="demo-guide.html">Demo Guide — The Loot Yard</a></li>
+          <li><a href="api-summary.html">API Summary</a></li>
+          <li><a href="honest-limits.html">Honest Limits</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="support.html">Support</a></li>
+      </ol>
+    </nav>
+    <p class="side-note">LootGrid Pro is a ByteLura product.<br>
+    Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></p>
+  </aside>
+  <main class="content">
+
+    <h1>Loot Tables</h1>
+
+    <p>A <code>LootTable</code> is a ScriptableObject of weighted entries:</p>
+
+    <table>
+      <tr><th>Field</th><th>Meaning</th></tr>
+      <tr><td>Item</td><td>The definition that can arrive.</td></tr>
+      <tr><td>Weight</td><td>Relative roll weight (the demo uses 3 / 3 / 2 / 1 / 1).</td></tr>
+      <tr><td>MinCount / MaxCount</td><td>The stack size range on a hit (rolled inclusively).</td></tr>
+    </table>
+
+    <h2>Rolling</h2>
+    <pre><code>var rolled = table.Generate(rng, rolls);   // List&lt;ItemStack&gt;</code></pre>
+    <ul>
+      <li>Generation is <strong>seeded</strong>: pass a <code>System.Random</code> you control and
+      the same seed produces the same loot — replays, tests and daily
+      seeds behave identically. (The demo passes its own <code>System.Random</code>;
+      the design deliberately uses it instead of a global random source.)</li>
+      <li>Each roll picks one entry by weight and a count in its range.
+      Rolled stacks respect MaxStack — a roll never produces an illegal
+      stack.</li>
+      <li>Arriving is the container's job: the demo's <em>Loot the Wreck</em> feeds
+      each rolled stack through the chest's <code>TryAdd</code> and reports on the
+      status line exactly what arrived — and, when the chest cannot take
+      something, how many units had no room.</li>
+    </ul>
+
+    <h2>What tables cannot do</h2>
+    <p>A table rolls <em>which defined items arrive</em>. It does not invent items,
+    stats or affixes — there is no procedural item generation in v1, by
+    design.</p>
+
+    <footer class="page-footer">
+      <span>LootGrid Pro — a ByteLura product.</span>
+      <span>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

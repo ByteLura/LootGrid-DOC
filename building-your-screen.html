@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building Your Screen — LootGrid Pro Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="product" href="index.html">LootGrid <span>Pro</span></a>
+  <span class="brand">ByteLura</span>
+  <span class="tagline">Spatial grid inventory for Unity</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <p class="nav-title">Documentation</p>
+    <nav>
+      <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quick-start.html">Quick Start</a></li>
+          <li><a href="grid-model.html">The Grid Model</a></li>
+          <li><a href="containers-and-weight.html">Containers and Weight</a></li>
+          <li><a href="drag-drop-and-click-move.html">Drag-and-Drop and Click-Move</a></li>
+          <li><a href="equipment-doll.html">The Equipment Doll</a></li>
+          <li><a href="saving-and-json.html">Saving and JSON</a></li>
+          <li><a href="loot-tables.html">Loot Tables</a></li>
+          <li><a href="building-your-screen.html" class="active">Building Your Screen</a></li>
+          <li><a href="demo-guide.html">Demo Guide — The Loot Yard</a></li>
+          <li><a href="api-summary.html">API Summary</a></li>
+          <li><a href="honest-limits.html">Honest Limits</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="support.html">Support</a></li>
+      </ol>
+    </nav>
+    <p class="side-note">LootGrid Pro is a ByteLura product.<br>
+    Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></p>
+  </aside>
+  <main class="content">
+
+    <h1>Building Your Screen</h1>
+
+    <p>One call builds the whole inventory UI:</p>
+    <pre><code>InventoryScreenView.Build(parent, primary, secondary, equipment, theme)</code></pre>
+
+    <figure class="doc-shot">
+      <img src="images/hero.jpg" alt="The inventory screen built by the factory call, showing container panels with grids and weight readouts">
+      <figcaption>The screen the factory call builds: container panels with grids, weight readouts and items placed by footprint.</figcaption>
+    </figure>
+
+    <ul>
+      <li><strong>parent</strong> — typically your canvas transform.</li>
+      <li><strong>primary</strong> — the player's container (its panel is always built).</li>
+      <li><strong>secondary</strong> — the container being looted, or null.</li>
+      <li><strong>equipment</strong> — an <code>EquipmentSet</code>, or null (no doll).</li>
+      <li><strong>theme</strong> — an <code>InventoryTheme</code> asset, or null for shipped defaults.</li>
+    </ul>
+
+    <p>What appears: a dim backdrop; the window; one panel per container —
+    title, live weight readout ("12.5 kg / 60 kg"), the grid, Sort and
+    Stack buttons, and a controls hint; the doll when equipment is
+    passed; a <strong>Rotate (R)</strong> button and a <strong>Close</strong> button on the window;
+    a status line every refusal and result reports on; and a drag layer
+    above everything. <code>screen.Close()</code> hides it; <code>SetActive(true)</code> shows
+    it again. <code>screen.SetStatus(...)</code> is yours to use for your own
+    messages in the same voice.</p>
+
+    <h2>The theme</h2>
+    <p><code>InventoryTheme</code> carries the metrics and colours: cell size and
+    spacing, panel/window/backdrop colours, text colours, button colour,
+    and a colour per rarity (Common, Uncommon, Rare, Epic — and the rest
+    of the <code>ItemRarity</code> range). Restyle by editing one asset; labels use
+    uGUI Text with the theme's font slot, so a game that wants its own
+    font sets it there. Rarity is shown as colour, and stack counts stay
+    legible down to a 1&times;1 item — the count badge is drawn inside the
+    item's own rect.</p>
+
+    <h2>Panels on their own</h2>
+    <p><code>ContainerPanelView.Build(...)</code> and <code>EquipmentDollView.Build(...)</code>
+    are public too — if your game has its own window chrome, build the
+    panels into your layout and skip the factory window.</p>
+
+    <footer class="page-footer">
+      <span>LootGrid Pro — a ByteLura product.</span>
+      <span>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

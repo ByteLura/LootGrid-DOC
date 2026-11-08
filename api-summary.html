@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API Summary — LootGrid Pro Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="product" href="index.html">LootGrid <span>Pro</span></a>
+  <span class="brand">ByteLura</span>
+  <span class="tagline">Spatial grid inventory for Unity</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <p class="nav-title">Documentation</p>
+    <nav>
+      <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quick-start.html">Quick Start</a></li>
+          <li><a href="grid-model.html">The Grid Model</a></li>
+          <li><a href="containers-and-weight.html">Containers and Weight</a></li>
+          <li><a href="drag-drop-and-click-move.html">Drag-and-Drop and Click-Move</a></li>
+          <li><a href="equipment-doll.html">The Equipment Doll</a></li>
+          <li><a href="saving-and-json.html">Saving and JSON</a></li>
+          <li><a href="loot-tables.html">Loot Tables</a></li>
+          <li><a href="building-your-screen.html">Building Your Screen</a></li>
+          <li><a href="demo-guide.html">Demo Guide — The Loot Yard</a></li>
+          <li><a href="api-summary.html" class="active">API Summary</a></li>
+          <li><a href="honest-limits.html">Honest Limits</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="support.html">Support</a></li>
+      </ol>
+    </nav>
+    <p class="side-note">LootGrid Pro is a ByteLura product.<br>
+    Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></p>
+  </aside>
+  <main class="content">
+
+    <h1>API Summary</h1>
+
+    <p>Namespaces: <code>ByteLura.LootGrid</code> (runtime), <code>ByteLura.LootGrid.Editor</code>
+    (workshop), <code>ByteLura.LootGrid.Samples</code> (demo driver). The shipped
+    <code>Documentation~/ApiReference.md</code> in the package is the full reference;
+    this page is the map.</p>
+
+    <h2>Items</h2>
+    <ul>
+      <li><code>ItemDefinition</code> — Id (the save key), DisplayName, Width/Height,
+      CanRotate, Stackable/MaxStack, Rarity, Weight, BaseValue, Category,
+      EquipmentSlot, Icon.</li>
+      <li><code>ItemStack</code> — a definition + a count; <code>ItemDatabase</code> — the definition
+      registry with <code>Validate(out errors)</code> naming every problem.</li>
+    </ul>
+
+    <h2>The grid — <code>InventoryGrid</code></h2>
+    <p><code>TryPlaceAt</code>, <code>TryAdd</code>, <code>Remove</code>, <code>Reduce</code>, <code>Move</code>, <code>Rotate</code>,
+    <code>SplitStack</code>, <code>AutoStack</code>, <code>Sort(mode)</code>, <code>CanPlaceAt</code>, <code>CountThatFits</code>,
+    <code>OccupantAt</code>, <code>Items</code>, <code>TotalUnits</code>, <code>TotalWeight</code>, <code>MaxWeight</code>.
+    Mutations report outcomes (moved counts, unplaced counts, bools) —
+    model errors are return values, never exceptions across a drag or a
+    restore.</p>
+
+    <h2>Containers and transfer</h2>
+    <ul>
+      <li><code>InventoryContainer</code> — Grid, DisplayName, ContainerId, Changed.</li>
+      <li><code>ItemTransfer.TransferAll(source, destination)</code> — fit-checked,
+      conserving, returns units moved.</li>
+    </ul>
+
+    <h2>Equipment (separable module)</h2>
+    <ul>
+      <li><code>EquipmentSet</code> — <code>CanEquip</code>, <code>TryEquip</code>, <code>Unequip</code>, <code>GetEquipped</code>,
+      <code>AllSlots</code>; <code>EquipmentLoadout</code> — its MonoBehaviour face with
+      <code>StartingEquipped</code>.</li>
+    </ul>
+
+    <h2>Database and loot</h2>
+    <ul>
+      <li><code>LootTable.Generate(System.Random, rolls)</code> — seeded, weighted,
+      range-counted, MaxStack-respecting.</li>
+    </ul>
+
+    <h2>Saves</h2>
+    <ul>
+      <li><code>InventorySerializer</code> — <code>Capture</code> / <code>Restore</code> per container,
+      <code>CaptureEquipment</code> / <code>RestoreEquipment</code>, <code>CaptureAll</code> /
+      <code>RestoreAll</code>, <code>ToJson</code> / <code>FromJson</code>. Restore is defensive: named
+      warnings, no throws, no silent loss.</li>
+    </ul>
+
+    <h2>Views</h2>
+    <ul>
+      <li><code>InventoryScreenView.Build(...)</code>, <code>ContainerPanelView</code>,
+      <code>InventoryGridView</code>, <code>InventoryItemView</code>, <code>EquipmentDollView</code>,
+      <code>InventoryDragController</code> (<code>OnItemClicked</code>, <code>OnGridClicked</code>,
+      <code>TryEquipSelected</code>, <code>RotateSelectionOrDrag</code>), <code>InventoryTheme</code>.</li>
+    </ul>
+
+    <footer class="page-footer">
+      <span>LootGrid Pro — a ByteLura product.</span>
+      <span>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

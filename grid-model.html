@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Grid Model — LootGrid Pro Documentation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="product" href="index.html">LootGrid <span>Pro</span></a>
+  <span class="brand">ByteLura</span>
+  <span class="tagline">Spatial grid inventory for Unity</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <p class="nav-title">Documentation</p>
+    <nav>
+      <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quick-start.html">Quick Start</a></li>
+          <li><a href="grid-model.html" class="active">The Grid Model</a></li>
+          <li><a href="containers-and-weight.html">Containers and Weight</a></li>
+          <li><a href="drag-drop-and-click-move.html">Drag-and-Drop and Click-Move</a></li>
+          <li><a href="equipment-doll.html">The Equipment Doll</a></li>
+          <li><a href="saving-and-json.html">Saving and JSON</a></li>
+          <li><a href="loot-tables.html">Loot Tables</a></li>
+          <li><a href="building-your-screen.html">Building Your Screen</a></li>
+          <li><a href="demo-guide.html">Demo Guide — The Loot Yard</a></li>
+          <li><a href="api-summary.html">API Summary</a></li>
+          <li><a href="honest-limits.html">Honest Limits</a></li>
+          <li><a href="troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="support.html">Support</a></li>
+      </ol>
+    </nav>
+    <p class="side-note">LootGrid Pro is a ByteLura product.<br>
+    Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></p>
+  </aside>
+  <main class="content">
+
+    <h1>The Grid Model</h1>
+
+    <p><code>InventoryGrid</code> is the heart of LootGrid Pro — a pure model class with
+    no UI types in it. Everything the player does is a validated operation
+    on this model; the views only show its state.</p>
+
+    <h2>Footprints and placement</h2>
+    <ul>
+      <li>Every placed item occupies an exact rectangle of cells: its
+      definition's Width &times; Height, swapped when rotated.</li>
+      <li>Placement is checked three ways: in bounds, no overlap, and — at the
+      container level — the weight limit.</li>
+      <li><code>TryPlaceAt</code> places at an exact cell; <code>TryAdd</code> first-fits (and
+      tops up matching stacks first); <code>Move</code> relocates a placed item,
+      ignoring its own cells but respecting everything else; <code>Remove</code>
+      frees the cells immediately.</li>
+      <li>First-fit is deterministic: the same grid state always produces the
+      same layout.</li>
+    </ul>
+
+    <h2>Rotation</h2>
+    <p>A definition's <code>CanRotate</code> decides whether its footprint may swap.
+    Rotation applies mid-drag (the ghost resizes to the rotated
+    footprint), to a click-selected item in place, and in the model API
+    (<code>Grid.Rotate</code>). A non-rotatable item refuses everywhere, consistently.</p>
+
+    <h2>Stacking and splitting</h2>
+    <ul>
+      <li>Stackable definitions merge up to their MaxStack. Adds top up the
+      first matching stack before opening new ones and report how many
+      units could not be placed — never a silent loss.</li>
+      <li><code>SplitStack</code> divides a stack into exact counts; a full-count split
+      is refused (that is a move, not a split). Shift-drag in the UI
+      carries half the stack, rounded up, through the same code path.</li>
+      <li><code>AutoStack</code> merges every mergeable pile in the grid and returns how
+      many merges happened.</li>
+    </ul>
+
+    <h2>Sorting</h2>
+    <p>Three modes — BySize, ByRarity, ByName. Sorting repacks through a
+    scratch grid: the new layout is adopted only if every stack fits, so
+    <strong>a sort can never lose or duplicate an item</strong>. If a repack cannot
+    fit, the sort returns false and the original layout stands.</p>
+
+    <footer class="page-footer">
+      <span>LootGrid Pro — a ByteLura product.</span>
+      <span>Support: <a href="mailto:bytelura@gmail.com">bytelura@gmail.com</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
